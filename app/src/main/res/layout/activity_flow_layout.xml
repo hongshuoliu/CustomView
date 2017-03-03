@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_flow_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FlowLayoutActivity">
+
+    <Button
+        android:id="@+id/btn_add"
+        android:text="追加"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.liu.custom.customview.wight.FlowGroupLayout
+        android:id="@+id/flow_layout1"
+        android:padding="10dp"
+        android:background="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </com.liu.custom.customview.wight.FlowGroupLayout>
+
+    <com.liu.custom.customview.wight.FlowGroupLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/flow_layout2"
+        android:padding="10dp"
+        android:background="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </com.liu.custom.customview.wight.FlowGroupLayout>
+    
+</LinearLayout>

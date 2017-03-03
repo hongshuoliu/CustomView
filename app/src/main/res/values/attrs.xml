@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--圆形图片-->
+    <declare-styleable name="CircleImageView">
+        <attr name="circle_border" format="dimension"></attr>
+        <attr name="circle_border_color" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="RoundRectImageView">
+        <attr name="rect_radiux" format="dimension"></attr>
+        <attr name="rect_radiuy" format="dimension"></attr>
+        <attr name="rect_border" format="dimension"></attr>
+        <attr name="rect_border_color" format="color"></attr>
+    </declare-styleable>
+
+    <!--验证码-->
+    <declare-styleable name="CodeView">
+        <attr name="count" format="integer"></attr>
+        <attr name="line_count" format="integer"></attr>
+        <attr name="font_size" format="dimension"></attr>
+        <attr name="code_color" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="CornerLayout">
+        <attr name="layout_position" format="enum">
+            <enum name="left_top" value="0"/>
+            <enum name="right_top" value="1"/>
+            <enum name="left_botttom" value="2"/>
+            <enum name="right_bottom" value="3"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SliderMenu">
+        <attr name="sliding_width" format="dimension"/>
+        <attr name="separator" format="dimension"/>
+        <attr name="touch_width" format="dimension"/>
+        <attr	name="left_padding_width"	format="dimension"/>
+    </declare-styleable>
+
+</resources>
