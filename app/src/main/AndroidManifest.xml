@@ -27,8 +27,10 @@
             android:theme="@style/ActivityTheme" />
         <!-- 水平滑动tab控件 -->
         <activity
-            android:theme="@style/ActivityTheme"
-            android:name=".HonTabActivity"/>
+            android:name=".HonTabActivity"
+            android:theme="@style/ActivityTheme" />
+        <activity android:name=".StatscsActivity"
+            android:theme="@style/ActivityTheme"/>
     </application>
 
 </manifest>

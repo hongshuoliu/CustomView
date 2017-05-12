@@ -2,7 +2,6 @@ package com.liu.custom.customview.wight;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -10,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.liu.custom.customview.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,9 @@ public class FlowGroupLayout extends ViewGroup {
     /** 可视最大tab数量*/
     private int visibleCount = 50;
 
+    private int itemBackground = 0;
+    private int itemTextColor = 0;
+
     public FlowGroupLayout(Context context) {
         this(context,null);
     }
@@ -51,6 +55,8 @@ public class FlowGroupLayout extends ViewGroup {
     public FlowGroupLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
+        this.itemBackground = R.drawable.selector_item_bg;
+        this.itemTextColor = R.color.selector_item_text;
     }
 
     @Override
@@ -125,7 +131,6 @@ public class FlowGroupLayout extends ViewGroup {
     private int measureWidth(int widthMeasureSpec){
         int mode = MeasureSpec.getMode(widthMeasureSpec);
         int size = MeasureSpec.getSize(widthMeasureSpec);
-        int width = size;
 
         return size;
     }
@@ -145,29 +150,57 @@ public class FlowGroupLayout extends ViewGroup {
         else if(mode == MeasureSpec.AT_MOST){
             int width = getMeasuredWidth();
             int childCount= getChildCount();
+            if (childCount >0){
+                height += getChildHeight(getChildAt(0));
+            }
 
             int	maxLineWidth	=	0;//当前行的子组件的总宽度
             for (int i=0;i<childCount && i<visibleCount;++i){
                 View child = getChildAt(i);
-                MarginLayoutParams layoutParams = (MarginLayoutParams)getChildAt(i).getLayoutParams();
-                int leftMargin = layoutParams.leftMargin;
-                int rightMargin = layoutParams.rightMargin;
-                int topMargin = layoutParams.topMargin;
-                int bottomMargin = layoutParams.bottomMargin;
 
-                if (maxLineWidth+child.getMeasuredWidth()+leftMargin+rightMargin > width-getPaddingLeft()-getPaddingRight()){
-                    height +=child.getMeasuredHeight()+topMargin+bottomMargin;
+                if (maxLineWidth + getChildWidth(child) > width-getPaddingLeft()-getPaddingRight()){
+                    height += getChildHeight(child);
                     maxLineWidth =0;
                 }
                 else {
-                    maxLineWidth +=child.getMeasuredWidth()+leftMargin+rightMargin;
+                    maxLineWidth += getChildWidth(child);
                 }
             }
 
             height += this.getPaddingTop()+getPaddingBottom();
         }
+        Log.i(TAG,"height:"+height);
         return height;
     }
+
+    /**
+     * 获取子控件高度
+     * @param child
+     * @return
+     */
+    private int getChildHeight(View child){
+
+        MarginLayoutParams layoutParams = (MarginLayoutParams)child.getLayoutParams();
+        int topMargin = layoutParams.topMargin;
+        int bottomMargin = layoutParams.bottomMargin;
+
+        return child.getMeasuredHeight()+topMargin+bottomMargin;
+    }
+
+    /**
+     * 获取子控件宽度
+     * @param child
+     * @return
+     */
+    private int getChildWidth(View child){
+
+        MarginLayoutParams layoutParams = (MarginLayoutParams)child.getLayoutParams();
+        int leftMargin = layoutParams.leftMargin;
+        int rightMargin = layoutParams.rightMargin;
+
+        return child.getMeasuredWidth()+leftMargin+rightMargin;
+    }
+
 
     /**
      * 获取可见文本数量
@@ -204,10 +237,10 @@ public class FlowGroupLayout extends ViewGroup {
             addView(str);
         }
 
+        postInvalidate();
+        //invalidate();
+
         Log.i(TAG,"list-size:"+dataList.size());
-        /*this.postInvalidate();
-        this.invalidate();
-        this.requestLayout();*/
     }
 
     /**
@@ -229,9 +262,9 @@ public class FlowGroupLayout extends ViewGroup {
         params.gravity = Gravity.CENTER_VERTICAL;
         TextView textView = new TextView(context);
         textView.setText(str);
-        textView.setTextColor(Color.WHITE);
-        textView.setBackgroundColor(Color.GRAY);
-        textView.setPadding(10,0,10,0);
+        textView.setTextColor(getResources().getColorStateList(R.color.white));
+        textView.setBackgroundResource(R.drawable.selector_item_bg);
+        textView.setPadding(30,20,30,20);
         //textView.setMaxEms(6);
         textView.setSingleLine(true);
         textView.setOnClickListener(new OnClickListener() {
