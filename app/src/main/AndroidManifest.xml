@@ -31,6 +31,9 @@
             android:theme="@style/ActivityTheme" />
         <activity android:name=".StatscsActivity"
             android:theme="@style/ActivityTheme"/>
+
+        <activity android:name=".BannerActivity"
+            android:theme="@style/ActivityTheme"/>
     </application>
 
 </manifest>

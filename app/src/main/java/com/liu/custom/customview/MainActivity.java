@@ -18,7 +18,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private final String TAG = "MainActivity";
 
-    private LinearLayout mActivityMain;
     private Button mBtnCustomview;
     private Button mBtnFlow;
     private Button mBtnHonScroll;
@@ -47,8 +46,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private void initView(){
 
-
-        mActivityMain = (LinearLayout) findViewById(R.id.activity_main);
         mBtnCustomview = (Button) findViewById(R.id.btn_customview);
         mBtnFlow = (Button) findViewById(R.id.btn_flow);
         mBtnHonScroll = (Button) findViewById(R.id.btn_hon_scroll);
@@ -77,7 +74,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.btn_static_view:
-                intent = new Intent(this,StatscsActivity.class);
+                intent = new Intent(this,BannerActivity.class);
                 startActivity(intent);
                 break;
             default:
